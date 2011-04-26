@@ -7,21 +7,6 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.utils import simplejson as json
 
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([
-        (
-            [ListField],
-            [],
-            {
-                "separator": ["separator", {"default": ","}],
-            },
-        ),
-    ], ["^boundaryservice\.fields\.ListField"])
-    add_introspection_rules([], ["^boundaryservice\.fields\.JSONField"])
-except ImportError: # don't fail if south isn't installed
-    pass
-
 
 class ListField(models.TextField):
     """
@@ -96,4 +81,19 @@ class JSONField(models.TextField):
         value = self._get_val_from_obj(obj)
 
         return self.get_db_prep_value(value)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([
+        (
+            [ListField],
+            [],
+            {
+                "separator": ["separator", {"default": ","}],
+            },
+        ),
+    ], ["^boundaryservice\.fields\.ListField"])
+    add_introspection_rules([], ["^boundaryservice\.fields\.JSONField"])
+except ImportError: # don't fail if south isn't installed
+    pass
 
