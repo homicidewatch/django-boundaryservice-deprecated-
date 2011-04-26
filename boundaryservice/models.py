@@ -115,6 +115,7 @@ class Boundary(SluggedModel):
 
     class Meta:
         ordering = ('kind', 'display_name')
+        verbose_name_plural = "boundaries"
 
     def __unicode__(self):
         """

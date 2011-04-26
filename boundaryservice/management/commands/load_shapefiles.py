@@ -11,7 +11,7 @@ from django.contrib.gis.gdal import CoordTransform, DataSource, OGRGeometry, OGR
 from django.contrib.gis.geos import MultiPolygon
 from django.db import connections, DEFAULT_DB_ALIAS
 
-from boundaries.apps.api.models import BoundarySet, Boundary
+from boundaryservice.models import BoundarySet, Boundary
 
 DEFAULT_SHAPEFILES_DIR = 'data/shapefiles'
 GEOMETRY_COLUMN = 'shape'
