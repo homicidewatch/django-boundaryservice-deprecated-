@@ -5,13 +5,13 @@ from django.contrib.gis.measure import D
 from tastypie import fields
 from tastypie.serializers import Serializer
 
-from boundaries.apps.api.authentication import NoOpApiKeyAuthentication
-from boundaries.apps.api.models import BoundarySet, Boundary
-from boundaries.apps.api.tastyhacks import SluggedResource
-from boundaries.apps.api.throttle import AnonymousThrottle
+from boundaryservice.authentication import NoOpApiKeyAuthentication
+from boundaryservice.models import BoundarySet, Boundary
+from boundaryservice.tastyhacks import SluggedResource
+from boundaryservice.throttle import AnonymousThrottle
 
 class BoundarySetResource(SluggedResource):
-    boundaries = fields.ToManyField('boundaries.apps.api.resources.BoundaryResource', 'boundaries')
+    boundaries = fields.ToManyField('boundaryservice.resources.BoundaryResource', 'boundaries')
 
     class Meta:
         queryset = BoundarySet.objects.all()

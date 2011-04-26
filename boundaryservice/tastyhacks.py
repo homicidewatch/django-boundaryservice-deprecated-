@@ -10,7 +10,7 @@ from tastypie.resources import ModelResource
 from tastypie.serializers import Serializer
 from tastypie.utils import trailing_slash
 
-from boundaries.lib.fields import ListField, JSONField
+from boundaryservice.fields import ListField, JSONField
 
 class ListApiField(ApiField):
     """
