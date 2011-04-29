@@ -1,19 +1,21 @@
 import csv
 import logging 
-log = logging.getLogger('boundaries.api.load_shapefiles')
-import json
 from optparse import make_option
 import os
 import sys
 
-from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 from django.contrib.gis.gdal import CoordTransform, DataSource, OGRGeometry, OGRGeomType
 from django.contrib.gis.geos import MultiPolygon
+from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, DEFAULT_DB_ALIAS
+from django.utils import simplejson as json
 
 from boundaryservice.models import BoundarySet, Boundary
 
-DEFAULT_SHAPEFILES_DIR = 'data/shapefiles'
+log = logging.getLogger('boundaryservice.load_shapefiles')
+
+DEFAULT_SHAPEFILES_DIR = getattr(settings, 'SHAPEFILES_DIR', None) or 'data/shapefiles'
 GEOMETRY_COLUMN = 'shape'
 
 class Command(BaseCommand):
