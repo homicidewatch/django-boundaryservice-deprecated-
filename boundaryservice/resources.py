@@ -29,7 +29,7 @@ class BoundaryResource(SluggedResource):
         queryset = Boundary.objects.all()
         serializer = Serializer(formats=['json', 'jsonp'], content_types = {'json': 'application/json', 'jsonp': 'text/javascript'})
         resource_name = 'boundary'
-        excludes = ['id', 'display_name', 'shape']
+        excludes = ['id', 'shape']
         allowed_methods = ['get']
         authentication = NoOpApiKeyAuthentication()
         throttle = AnonymousThrottle(throttle_at=100) 
