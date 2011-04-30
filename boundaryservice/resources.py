@@ -6,6 +6,7 @@ from tastypie import fields
 from tastypie.serializers import Serializer
 
 from boundaryservice.authentication import NoOpApiKeyAuthentication
+from boundaryservice.cache import CacheClass
 from boundaryservice.models import BoundarySet, Boundary
 from boundaryservice.tastyhacks import SluggedResource
 from boundaryservice.throttle import AnonymousThrottle
@@ -21,6 +22,7 @@ class BoundarySetResource(SluggedResource):
         allowed_methods = ['get']
         authentication = NoOpApiKeyAuthentication()
         throttle = AnonymousThrottle(throttle_at=100) 
+        cache = CacheClass()
 
 class BoundaryResource(SluggedResource):
     set = fields.ForeignKey(BoundarySetResource, 'set')
@@ -33,6 +35,7 @@ class BoundaryResource(SluggedResource):
         allowed_methods = ['get']
         authentication = NoOpApiKeyAuthentication()
         throttle = AnonymousThrottle(throttle_at=100) 
+        cache = CacheClass()
 
     def build_filters(self, filters=None):
         """
